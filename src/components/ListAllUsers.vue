@@ -33,7 +33,6 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 h3 {
 	margin: 40px 0 0;
@@ -51,9 +50,8 @@ a {
 }
 
 .user__card {
-	margin: 1em;
+	margin: 0.5em;
 	padding: 0.25em;
-	box-shadow: 0 3px 8px 2px rgba(0, 0, 0, 0.1);
 	transition: all 0.6s ease;
 	cursor: pointer;
 }
@@ -61,13 +59,16 @@ a {
 .user__card:hover {
 	background-color: #fa8231dd;
 	transform: translateY(-5px);
+	box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
 }
 
 .user__avatar {
+	margin: auto;
 	display: block;
 	width: 100px;
 	height: 100px;
 	margin-bottom: 0.5em;
+	overflow: hidden;
 }
 
 .user__login {

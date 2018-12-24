@@ -1,7 +1,11 @@
-<template></template>
+<template>
+	<span>{{userDetail}}</span>
+</template>
 
 <script>
-export default {};
+export default {
+	props: ["userDetail"]
+};
 </script>
 
 <style>
