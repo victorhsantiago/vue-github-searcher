@@ -1,10 +1,11 @@
-import App from "./App.vue";
+import ListAllUsers from "./components/ListAllUsers.vue";
 import UserDetail from "./components/UserDetail/UserDetail.vue";
 
 export const routes = [
-    { path: "", component: App },
+    { path: "", component: ListAllUsers },
     {
         path: "/user-detail",
-        component: UserDetail
+        component: UserDetail,
+        props: true
     }
 ];

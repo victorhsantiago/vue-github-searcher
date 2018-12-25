@@ -1,16 +1,17 @@
 <template>
 	<div id="app">
-		<ListAllUsers/>
+		<Header></Header>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-import ListAllUsers from "./components/ListAllUsers.vue";
+import Header from "./components/shared/Header.vue";
 
 export default {
 	name: "app",
 	components: {
-		ListAllUsers
+		Header
 	}
 };
 </script>

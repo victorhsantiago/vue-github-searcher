@@ -1,14 +1,21 @@
 <template>
-	<div class="hello">
+	<div class="user__list">
 		<ul>
 			<li v-for="(user, i) in usersList" :key="i">
 				<div class="user__card">
-					<img class="user__avatar" :src="user.avatar_url" alt="User avatar">
-					<span class="user__login">{{user.login}}</span>
+					<router-link to="/user-detail" v-model="user.login">
+						<img class="user__avatar" :src="user.avatar_url" alt="User avatar">
+						<span class="user__login">{{user.login}}</span>
+					</router-link>
 				</div>
 			</li>
 		</ul>
-		<ButtonLoadMore/>
+
+		<ButtonLoadMore v-if="!loading"/>
+
+		<div class="loading" v-if="loading">
+			<p>Loading...</p>
+		</div>
 	</div>
 </template>
 
@@ -18,9 +25,9 @@ import ButtonLoadMore from "./ButtonLoadMore/ButtonLoadMore.vue";
 
 export default {
 	name: "ListAllUsers",
-	props: {},
 	data() {
 		return {
+			loading: true,
 			usersList: null,
 			nextPage: null,
 			API: "https://api.github.com/users"
@@ -28,7 +35,10 @@ export default {
 	},
 	components: { ButtonLoadMore },
 	mounted() {
-		axios.get(this.API).then(res => (this.usersList = res.data));
+		axios
+			.get(this.API)
+			.then(res => (this.usersList = res.data))
+			.finally(() => (this.loading = false));
 	}
 };
 </script>
