@@ -3,7 +3,7 @@
 		<ul>
 			<li v-for="(user, i) in usersList" :key="i">
 				<div class="user__card">
-					<router-link to="/user-detail" v-model="user.login">
+					<router-link :to="/user/ + user.login">
 						<img class="user__avatar" :src="user.avatar_url" alt="User avatar">
 						<span class="user__login">{{user.login}}</span>
 					</router-link>
