@@ -17,17 +17,28 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700");
+	@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700");
 
-:root {
-	font-family: "Montserrat", Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
+	:root {
+		font-family: "Montserrat", Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 
-#app {
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
+	#app {
+		color: #2c3e50;
+		width: 80%;
+		margin: auto;
+		margin-top: 60px;
+	}
+
+	a {
+		text-decoration: none;
+		color: #2c3e50;
+	}
+
+	a:hover {
+		color: #121d29;
+		text-decoration: underline;
+	}
 </style>

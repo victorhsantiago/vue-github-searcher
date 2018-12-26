@@ -1,30 +1,26 @@
 <template>
-	<div class="user__list">
-		<ul>
-			<li v-for="(user, i) in usersList" :key="i">
-				<div class="user__card">
-					<router-link :to="/user/ + user.login">
-						<img class="user__avatar" :src="user.avatar_url" alt="User avatar">
-						<span class="user__login">{{user.login}}</span>
-					</router-link>
-				</div>
-			</li>
-		</ul>
-
-		<ButtonLoadMore v-if="!loading"/>
-
-		<div class="loading" v-if="loading">
-			<p>Loading...</p>
+	<div>
+		<div class="user__list">
+			<div class="user__card" v-for="(user, i) in usersList" :key="i">
+				<router-link :to="/user/ + user.login">
+					<img class="user__avatar" :src="user.avatar_url" alt="User avatar">
+					<span class="user__login">{{user.login}}</span>
+				</router-link>
+			</div>
 		</div>
+		<Button v-if="!loading"/>
+		<Loader v-if="loading"/>
 	</div>
 </template>
 
 <script>
 import axios from "axios";
-import ButtonLoadMore from "./ButtonLoadMore/ButtonLoadMore.vue";
+import Button from "./shared/Button.vue";
+import Loader from "./shared/Loader.vue";
 
 export default {
 	name: "ListAllUsers",
+	components: { Button, Loader },
 	data() {
 		return {
 			loading: true,
@@ -33,7 +29,6 @@ export default {
 			API: "https://api.github.com/users"
 		};
 	},
-	components: { ButtonLoadMore },
 	mounted() {
 		axios
 			.get(this.API)
@@ -44,44 +39,40 @@ export default {
 </script>
 
 <style>
-h3 {
-	margin: 40px 0 0;
-}
-ul {
-	list-style-type: none;
-	padding: 0;
-}
-li {
-	display: inline-block;
-	margin: 0 10px;
-}
-a {
-	color: #42b983;
-}
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 
-.user__card {
-	margin: 0.5em;
-	padding: 0.25em;
-	transition: all 0.6s ease;
-	cursor: pointer;
-}
+	.user__list {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+	}
 
-.user__card:hover {
-	background-color: #fa8231dd;
-	transform: translateY(-5px);
-	box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
-}
+	.user__card {
+		text-align: center;
+		width: 120px;
+		margin-bottom: 1em;
+		padding: 0.5em;
+		transition: all 0.6s ease;
+		cursor: pointer;
+		border-radius: 0.25em;
+	}
 
-.user__avatar {
-	margin: auto;
-	display: block;
-	width: 100px;
-	height: 100px;
-	margin-bottom: 0.5em;
-	overflow: hidden;
-}
+	.user__card:hover {
+		background-color: #fa8231dd;
+		transform: translateY(-5px);
+		box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
+	}
 
-.user__login {
-	color: gray;
-}
+	.user__avatar {
+		margin: auto;
+		display: block;
+		width: 100px;
+		height: 100px;
+		margin-bottom: 0.5em;
+		overflow: hidden;
+		border-radius: 0.25em;
+	}
 </style>

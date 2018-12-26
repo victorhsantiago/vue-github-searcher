@@ -1,33 +1,44 @@
 <template>
-	<div>
-		<div>
-			<img :src="userDetail.avatar_url" alt srcset>
+	<div class="container">
+		<div class="user__detail">
+			<div class="user__pic">
+				<img :src="userDetail.avatar_url" alt srcset>
+			</div>
+			<div class="user__data">
+				<p>ID: {{userDetail.id}}</p>
+				<p>Login: {{userDetail.login}}</p>
+				<p>
+					Profile:
+					<a :href="userDetail.html_url" target="_blank">{{userDetail.html_url}}</a>
+				</p>
+				<p>Member since: {{userDetail.created_at | dateFormat}}</p>
+			</div>
 		</div>
-		<div>
-			<ul>
-				<li>ID: {{userDetail.id}}</li>
-				<li>Login: {{userDetail.login}}</li>
-				<a :href="userDetail.html_url" target="_blank">
-					<li>Profile: {{userDetail.html_url}}</li>
-				</a>
-				<li>Member since: {{userDetail.created_at}}</li>
-			</ul>
-			<ul>
-				<li v-for="(repo, i) in userRepos" :key="i">
-					<span>{{repo.name}}</span>
-				</li>
-			</ul>
+		<div class="user__repos">
+			<div class="user__repos__detail" v-for="(repo, i) in userRepos" :key="i">
+				<p class="user__repos__name">{{repo.name}}</p>
+				<p class="user__repos__id">{{repo.id}}</p>
+				<p>
+					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">{{repo.html_url}}</a>
+				</p>
+			</div>
 		</div>
+		<Loader v-if="loading"/>
 	</div>
 </template>
 
 <script>
 import axios from "axios";
+import moment from "moment";
+import Loader from "../shared/Loader.vue";
 
 export default {
 	props: ["id"],
+	components: { Loader },
+
 	data() {
 		return {
+			loading: true,
 			userDetail: null,
 			userRepos: null,
 			API: "https://api.github.com/users/" + this.id,
@@ -41,10 +52,71 @@ export default {
 	},
 	mounted() {
 		axios.get(this.API).then(res => (this.userDetail = res.data));
-		axios.get(this.API_REPOS).then(res => (this.userRepos = res.data));
+		axios
+			.get(this.API_REPOS)
+			.then(res => (this.userRepos = res.data))
+			.finally(() => (this.loading = false));
+	},
+	filters: {
+		dateFormat(date) {
+			return moment(date).format("YYYY/MM/DD");
+		}
 	}
 };
 </script>
 
 <style>
+	p {
+		padding: 0;
+		margin: 0 0 0.5em 0;
+	}
+	.container {
+		padding: 0;
+		margin: auto;
+		display: flex;
+	}
+
+	.user__detail {
+		padding: 1em;
+		width: 25%;
+		font-size: 0.85em;
+	}
+
+	.user__pic img {
+		width: 150px;
+		height: 150px;
+		border-radius: 0.25em;
+		margin-bottom: 1em;
+	}
+
+	.user_data {
+		width: 50%;
+		align-items: center;
+	}
+
+	.user__repos {
+		float: right;
+	}
+
+	.user__repos__detail {
+		font-size: 0.85em;
+		padding: 0.5em;
+		transform: translateY(-1px);
+		transition: all 0.3s ease;
+		border-bottom: 1px solid lightgray;
+	}
+
+	.user__repos__detail:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	.user__repos__name {
+		font-size: 1em;
+		font-weight: bold;
+	}
+
+	.user__repos__id {
+		font-size: 0.65em;
+		color: gray;
+	}
 </style>
