@@ -9,17 +9,27 @@
 				<p>Login: {{userDetail.login}}</p>
 				<p>
 					Profile:
-					<a :href="userDetail.html_url" target="_blank">{{userDetail.html_url}}</a>
+					<a
+						:href="userDetail.html_url"
+						target="_blank"
+					>{{userDetail.html_url}}</a>
 				</p>
 				<p>Member since: {{userDetail.created_at | dateFormat}}</p>
 			</div>
 		</div>
 		<div class="user__repos">
 			<div class="user__repos__detail" v-for="(repo, i) in userRepos" :key="i">
-				<p class="user__repos__name">{{repo.name}}</p>
-				<p class="user__repos__id">{{repo.id}}</p>
+				<p class="user__repos__name">
+					{{repo.name}}
+					<span class="user__repos__id">- {{repo.id}}</span>
+				</p>
+				<p class="user__repos__description">{{repo.description}}</p>
 				<p>
-					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">{{repo.html_url}}</a>
+					<a
+						:href="repo.html_url"
+						target="_blank"
+						rel="noopener noreferrer"
+					>{{repo.html_url}}</a>
 				</p>
 			</div>
 		</div>
@@ -44,11 +54,6 @@ export default {
 			API: "https://api.github.com/users/" + this.id,
 			API_REPOS: "https://api.github.com/users/" + this.id + "/repos"
 		};
-	},
-	methods: {
-		goToHome() {
-			this.$router.push("/");
-		}
 	},
 	mounted() {
 		axios.get(this.API).then(res => (this.userDetail = res.data));
@@ -90,7 +95,6 @@ export default {
 	}
 
 	.user_data {
-		width: 50%;
 		align-items: center;
 	}
 
@@ -112,11 +116,18 @@ export default {
 
 	.user__repos__name {
 		font-size: 1em;
-		font-weight: bold;
+		font-weight: 700;
 	}
 
 	.user__repos__id {
 		font-size: 0.65em;
 		color: gray;
+		font-weight: 400;
+	}
+
+	.user__repos__description {
+		font-size: 0.85em;
+		color: gray;
+		font-weight: 400;
 	}
 </style>
