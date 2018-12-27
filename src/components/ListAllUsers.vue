@@ -8,7 +8,7 @@
 				</router-link>
 			</div>
 		</div>
-		<Button v-if="!loading"/>
+		<Button v-if="!loading" @click="updateList()"/>
 		<Loader v-if="loading"/>
 	</div>
 </template>
@@ -26,7 +26,8 @@ export default {
 			loading: true,
 			usersList: null,
 			nextPage: null,
-			API: "https://api.github.com/users"
+			newList: null,
+			API: "https://api.github.com/users?per_page=50"
 		};
 	},
 	mounted() {
