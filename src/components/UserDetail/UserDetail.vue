@@ -13,7 +13,7 @@
 
 				<p>
 					<font-awesome-icon icon="user"/>
-					{{userDetail.login}}
+					{{userDetail.name}}
 				</p>
 				<p>
 					<font-awesome-icon icon="id-card"/>
@@ -33,11 +33,7 @@
 				</p>
 				<p class="user__repos__description">{{repo.description}}</p>
 				<p>
-					<a
-						:href="repo.html_url"
-						target="_blank"
-						rel="noopener noreferrer"
-					>{{repo.html_url}}</a>
+					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">{{repo.html_url}}</a>
 				</p>
 			</div>
 		</div>
@@ -78,89 +74,89 @@ export default {
 </script>
 
 <style>
-	svg {
-		padding-right: 0.5em;
-	}
+svg {
+	padding-right: 0.5em;
+}
 
-	.user__data p {
-		margin-bottom: 1em;
-	}
+.user__data p {
+	margin-bottom: 1em;
+}
+.container {
+	padding: 0;
+	margin: auto;
+	display: flex;
+}
+
+.user__detail {
+	padding: 1em;
+	width: 300px;
+	font-size: 0.85em;
+}
+
+.user__pic img {
+	width: 150px;
+	height: 150px;
+	border-radius: 0.25em;
+	margin-bottom: 1em;
+}
+
+.user__repos__detail {
+	font-size: 0.85em;
+	padding: 0.5em;
+	transform: translateY(-1px);
+	transition: all 0.3s ease;
+	border-bottom: 1px solid lightgray;
+	word-wrap: break-word;
+}
+
+.user__repos__detail:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.user__repos__name {
+	font-size: 1em;
+	font-weight: 700;
+}
+
+.user__repos__id {
+	font-size: 0.65em;
+	color: gray;
+	font-weight: 400;
+}
+
+.user__repos__description {
+	font-size: 0.85em;
+	color: gray;
+	font-weight: 400;
+}
+
+@media screen and (max-width: 978px) {
 	.container {
-		padding: 0;
-		margin: auto;
-		display: flex;
+		display: block;
 	}
 
 	.user__detail {
-		padding: 1em;
-		width: 300px;
-		font-size: 0.85em;
+		display: flex;
+		width: 100%;
 	}
 
-	.user__pic img {
-		width: 150px;
-		height: 150px;
-		border-radius: 0.25em;
-		margin-bottom: 1em;
+	.user__data {
+		padding-left: 3em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.container {
+		display: block;
 	}
 
-	.user__repos__detail {
-		font-size: 0.85em;
-		padding: 0.5em;
-		transform: translateY(-1px);
-		transition: all 0.3s ease;
-		border-bottom: 1px solid lightgray;
-		word-wrap: break-word;
+	.user__detail {
+		display: block;
+		width: 100%;
 	}
 
-	.user__repos__detail:hover {
-		background-color: rgba(0, 0, 0, 0.1);
+	.user__data {
+		padding-left: 0em;
 	}
-
-	.user__repos__name {
-		font-size: 1em;
-		font-weight: 700;
-	}
-
-	.user__repos__id {
-		font-size: 0.65em;
-		color: gray;
-		font-weight: 400;
-	}
-
-	.user__repos__description {
-		font-size: 0.85em;
-		color: gray;
-		font-weight: 400;
-	}
-
-	@media screen and (max-width: 978px) {
-		.container {
-			display: block;
-		}
-
-		.user__detail {
-			display: flex;
-			width: 100%;
-		}
-
-		.user__data {
-			padding-left: 3em;
-		}
-	}
-
-	@media screen and (max-width: 600px) {
-		.container {
-			display: block;
-		}
-
-		.user__detail {
-			display: block;
-			width: 100%;
-		}
-
-		.user__data {
-			padding-left: 0em;
-		}
-	}
+}
 </style>

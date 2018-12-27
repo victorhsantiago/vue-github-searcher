@@ -7,5 +7,6 @@ export const routes = [
         path: "/user/:id",
         component: UserDetail,
         props: true
-    }
+    },
+    { path: "*", redirect: "/" }
 ];
