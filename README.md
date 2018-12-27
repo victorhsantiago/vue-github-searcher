@@ -1,4 +1,4 @@
-# shaw-partners-test
+# vue-github-searcher
 
 ## Project setup
 ```
