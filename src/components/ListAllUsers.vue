@@ -9,18 +9,17 @@
 			</div>
 		</div>
 		<Button v-if="!loading" @click="updateList()"/>
-		<Loader v-if="loading"/>
+		<loader v-if="loading"/>
 	</div>
 </template>
 
 <script>
 import axios from "axios";
 import Button from "./shared/Button.vue";
-import Loader from "./shared/Loader.vue";
 
 export default {
 	name: "ListAllUsers",
-	components: { Button, Loader },
+	components: { Button },
 	data() {
 		return {
 			loading: true,
@@ -40,40 +39,40 @@ export default {
 </script>
 
 <style>
-	ul {
-		list-style-type: none;
-		padding: 0;
-	}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
 
-	.user__list {
-		display: flex;
-		flex-flow: row wrap;
-		justify-content: space-evenly;
-	}
+.user__list {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-evenly;
+}
 
-	.user__card {
-		text-align: center;
-		width: 120px;
-		margin-bottom: 1em;
-		padding: 0.5em;
-		transition: all 0.6s ease;
-		cursor: pointer;
-		border-radius: 0.25em;
-	}
+.user__card {
+	text-align: center;
+	width: 120px;
+	margin-bottom: 1em;
+	padding: 0.5em;
+	transition: all 0.6s ease;
+	cursor: pointer;
+	border-radius: 0.25em;
+}
 
-	.user__card:hover {
-		background-color: #fa8231dd;
-		transform: translateY(-5px);
-		box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
-	}
+.user__card:hover {
+	background-color: #fa8231dd;
+	transform: translateY(-5px);
+	box-shadow: 0 8px 8px 2px rgba(0, 0, 0, 0.1);
+}
 
-	.user__avatar {
-		margin: auto;
-		display: block;
-		width: 100px;
-		height: 100px;
-		margin-bottom: 0.5em;
-		overflow: hidden;
-		border-radius: 0.25em;
-	}
+.user__avatar {
+	margin: auto;
+	display: block;
+	width: 100px;
+	height: 100px;
+	margin-bottom: 0.5em;
+	overflow: hidden;
+	border-radius: 0.25em;
+}
 </style>

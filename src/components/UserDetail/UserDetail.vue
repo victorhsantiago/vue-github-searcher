@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<Loader v-if="loading"/>
+		<loader v-if="loading"/>
 		<div class="user__detail" v-if="!loading">
 			<div class="user__pic">
 				<img :src="userDetail.avatar_url" alt srcset>
@@ -43,11 +43,9 @@
 <script>
 import axios from "axios";
 import moment from "moment";
-import Loader from "../shared/Loader.vue";
 
 export default {
 	props: ["id"],
-	components: { Loader },
 
 	data() {
 		return {

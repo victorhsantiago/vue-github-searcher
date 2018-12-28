@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App.vue";
+import Loader from "./components/shared/Loader.vue";
 import { routes } from "./router.js";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -12,6 +13,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faFingerprint, faUser, faIdCard, faCalendarCheck);
+
+Vue.component("loader", Loader);
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

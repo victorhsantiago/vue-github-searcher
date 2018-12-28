@@ -1,9 +1,7 @@
 <template>
 	<div id="app">
 		<Header></Header>
-		<transition name="fade">
-			<router-view></router-view>
-		</transition>
+		<router-view></router-view>
 	</div>
 </template>
 
@@ -42,19 +40,5 @@ a {
 a:hover {
 	color: #121d29;
 	text-decoration: underline;
-}
-
-.fade-enter {
-	opacity: 0;
-}
-.fade-enter-active {
-	transition: opacity 1s;
-}
-.fade-leave {
-	/* opacity: 1; */
-}
-.fade-leave-active {
-	transition: opacity 1s;
-	opacity: 0;
 }
 </style>
