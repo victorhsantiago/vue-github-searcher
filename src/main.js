@@ -8,11 +8,18 @@ import {
     faFingerprint,
     faUser,
     faIdCard,
-    faCalendarCheck
+    faCalendarCheck,
+    faExternalLinkAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faFingerprint, faUser, faIdCard, faCalendarCheck);
+library.add(
+    faFingerprint,
+    faUser,
+    faIdCard,
+    faCalendarCheck,
+    faExternalLinkAlt
+);
 
 Vue.component("loader", Loader);
 

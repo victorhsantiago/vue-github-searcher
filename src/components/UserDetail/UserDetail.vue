@@ -17,7 +17,10 @@
 				</p>
 				<p>
 					<font-awesome-icon icon="id-card"/>
-					<a :href="userDetail.html_url" target="_blank">{{userDetail.html_url}}</a>
+					<a :href="userDetail.html_url" target="_blank">
+						{{userDetail.html_url}}
+						<font-awesome-icon icon="external-link-alt" style="margin-left: 0.5em"/>
+					</a>
 				</p>
 				<p>
 					<font-awesome-icon icon="calendar-check"/>
@@ -33,7 +36,10 @@
 				</p>
 				<p class="user__repos__description">{{repo.description}}</p>
 				<p>
-					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">{{repo.html_url}}</a>
+					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">
+						{{repo.html_url}}
+						<font-awesome-icon icon="external-link-alt" style="margin-left: 0.5em"/>
+					</a>
 				</p>
 			</div>
 		</div>
