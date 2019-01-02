@@ -36,13 +36,9 @@ export default {
 			const i = this.usersList.length - 1;
 			const nextPage = this.usersList[i].id;
 			const URL = `${this.API}&since=${nextPage}`;
-			this.loading = true;
-			axios
-				.get(URL)
-				.then(res => {
-					this.usersList.push(res.data);
-				})
-				.finally(() => (this.loading = false));
+			axios.get(URL).then(res => {
+				res.data.map(user => this.usersList.push(user));
+			});
 		}
 	}
 };
