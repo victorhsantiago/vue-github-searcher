@@ -97,4 +97,11 @@ export default {
 	button:hover {
 		background-color: #fa8231dd;
 	}
+
+	button:disabled,
+	button[disabled] {
+		background-color: #cccccc;
+		color: #666666;
+		cursor: not-allowed;
+	}
 </style>

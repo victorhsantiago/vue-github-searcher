@@ -28,7 +28,7 @@
 				</p>
 			</div>
 		</div>
-		<div class="user__repos">
+		<div class="user__repos" v-if="!loading">
 			<div class="user__repos__detail" v-for="(repo, i) in userRepos" :key="i">
 				<p class="user__repos__name">
 					{{repo.name}}
@@ -42,6 +42,10 @@
 					</a>
 				</p>
 			</div>
+			<div v-if="!links">
+				<button @click="prevPage" :disabled="!links['prev']">Previous</button>
+				<button @click="nextPage" :disabled="!links['next']">Next</button>
+			</div>
 		</div>
 	</div>
 </template>
@@ -49,6 +53,29 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+
+function parseHeadersLink(header) {
+	if (header.length === 0) {
+		throw new Error("input must not be of zero length");
+	}
+
+	// Split parts by comma
+	var parts = header.split(",");
+	let links = {};
+
+	// Parse each part into a named link
+	for (var i = 0; i < parts.length; i++) {
+		var section = parts[i].split(";");
+		if (section.length !== 2) {
+			throw new Error("section could not be split on ';'");
+		}
+		var url = section[0].replace(/<(.*)>/, "$1").trim();
+		var name = section[1].replace(/rel="(.*)"/, "$1").trim();
+		links[name] = url;
+	}
+
+	return links;
+}
 
 export default {
 	props: ["id"],
@@ -58,20 +85,49 @@ export default {
 			loading: true,
 			userDetail: null,
 			userRepos: null,
-			API: "https://api.github.com/users/" + this.id,
-			API_REPOS: "https://api.github.com/users/" + this.id + "/repos"
+			API: `https://api.github.com/users/${this.id}`,
+			API_REPOS: `https://api.github.com/users/${this.id}/repos`,
+			userReposLink: null,
+			links: null
 		};
 	},
 	mounted() {
+		//get user details from API
 		axios.get(this.API).then(res => (this.userDetail = res.data));
+
+		//listing user repos
 		axios
 			.get(this.API_REPOS)
 			.then(res => (this.userRepos = res.data))
 			.finally(() => (this.loading = false));
+
+		//get links from header
+		axios
+			.get(this.API_REPOS)
+			.then(res => (this.links = parseHeadersLink(res.headers.link)));
 	},
 	filters: {
 		dateFormat(date) {
 			return moment(date).format("YYYY/MM/DD");
+		}
+	},
+	methods: {
+		nextPage() {
+			//updating repos list with repos from the next page
+			axios
+				.get(this.links["next"])
+				.then(res => (this.userRepos = res.data));
+			axios
+				.get(this.links["next"])
+				.then(res => (this.links = parseHeadersLink(res.headers.link)));
+		},
+		prevPage() {
+			axios
+				.get(this.links["prev"])
+				.then(res => (this.userRepos = res.data));
+			axios
+				.get(this.links["prev"])
+				.then(res => (this.links = parseHeadersLink(res.headers.link)));
 		}
 	}
 };
