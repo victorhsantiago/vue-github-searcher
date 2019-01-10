@@ -9,7 +9,8 @@ import {
     faUser,
     faIdCard,
     faCalendarCheck,
-    faExternalLinkAlt
+    faExternalLinkAlt,
+    faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -18,7 +19,8 @@ library.add(
     faUser,
     faIdCard,
     faCalendarCheck,
-    faExternalLinkAlt
+    faExternalLinkAlt,
+    faSearch
 );
 
 Vue.component("loader", Loader);
