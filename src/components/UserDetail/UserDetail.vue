@@ -7,23 +7,27 @@
 			</div>
 			<div class="user__data">
 				<p>
-					<font-awesome-icon icon="fingerprint"/>
+					<font-awesome-icon class="user__icon" icon="fingerprint"/>
 					{{userDetail.id}}
 				</p>
 
 				<p>
-					<font-awesome-icon icon="user"/>
+					<font-awesome-icon class="user__icon" icon="user"/>
 					{{userDetail.name}}
 				</p>
 				<p>
-					<font-awesome-icon icon="id-card"/>
+					<font-awesome-icon class="user__icon" icon="id-card"/>
 					<a :href="userDetail.html_url" target="_blank">
 						{{userDetail.html_url}}
-						<font-awesome-icon icon="external-link-alt" style="margin-left: 0.5em"/>
+						<font-awesome-icon
+							class="user__icon"
+							icon="external-link-alt"
+							style="margin-left: 0.5em"
+						/>
 					</a>
 				</p>
 				<p>
-					<font-awesome-icon icon="calendar-check"/>
+					<font-awesome-icon class="user__icon" icon="calendar-check"/>
 					{{userDetail.created_at | dateFormat}}
 				</p>
 			</div>
@@ -38,7 +42,11 @@
 				<p>
 					<a :href="repo.html_url" target="_blank" rel="noopener noreferrer">
 						{{repo.html_url}}
-						<font-awesome-icon icon="external-link-alt" style="margin-left: 0.5em"/>
+						<font-awesome-icon
+							class="user__icon"
+							icon="external-link-alt"
+							style="margin-left: 0.5em"
+						/>
 					</a>
 				</p>
 			</div>
@@ -134,7 +142,7 @@ export default {
 </script>
 
 <style>
-	svg {
+	.user__icon {
 		padding-right: 0.5em;
 	}
 
@@ -158,6 +166,10 @@ export default {
 		height: 150px;
 		border-radius: 0.25em;
 		margin-bottom: 1em;
+	}
+
+	.user__repos {
+		width: 100%;
 	}
 
 	.user__repos__detail {
