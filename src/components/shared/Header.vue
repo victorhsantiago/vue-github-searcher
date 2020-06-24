@@ -17,40 +17,40 @@
 
 <script>
 export default {
-	data() {
-		return {
-			user: ""
-		};
-	},
-	methods: {
-		SearchResults() {
-			this.$router.push(`/search-result/${this.user}`);
-			this.user = "";
-		}
-	}
+  data() {
+    return {
+      user: ""
+    };
+  },
+  methods: {
+    SearchResults() {
+      this.$router.push(`/search-result/${this.user}`);
+      this.user = "";
+    }
+  }
 };
 </script>
 
 <style scope>
-	.header__container {
-		width: 100%;
-		margin-bottom: 1em;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-	}
+.header__container {
+  width: 100%;
+  margin-bottom: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 
-	.home__link {
-		align-self: center;
-	}
+.home__link {
+  align-self: center;
+}
 
-	.search__field {
-		justify-self: end;
-	}
+.search__field {
+  justify-self: end;
+}
 
-	.search__field input {
-		border: 0;
-		padding: 0.75em;
-		font-size: 1.25em;
-	}
+.search__field input {
+  border: 0;
+  padding: 0.75em;
+  font-size: 1.25em;
+}
 </style>
 
